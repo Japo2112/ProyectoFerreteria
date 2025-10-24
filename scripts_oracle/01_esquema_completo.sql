@@ -517,19 +517,27 @@ CREATE TABLE USUARIO (
   last_login       TIMESTAMP,
   CONSTRAINT fk_usuario_rol FOREIGN KEY (rol_app_id) REFERENCES ROLES_APLICACION(rol_app_id)
 );
-DROP USER ADMIN_APP CASCADE;
+DROP USER ADMIN_SISTEMA CASCADE;
+
+DROP TABLE USUARIO CASCADE CONSTRAINTS;
 -- Ejecuta esto para crear tu primer usuario HÍBRIDO
 -- Vamos a crear un usuario con un nombre nuevo, ej: ADMIN_SISTEMA
+-- (Conectado como FERRETERIA en XEPDB1)
+-- ¡Vamos a usar un nombre nuevo y limpio!
+
 BEGIN
   PKG_SEGURIDAD.PR_CREAR_USUARIO_HIBRIDO(
     p_nombre       => 'Administrador App',
-    p_username     => 'ADMIN_SISTEMA', -- <<<--- ¡NUEVO NOMBRE!
+    p_username     => 'APP_ADMIN', -- <<<--- ¡NUEVO NOMBRE!
     p_clave        => 'claveadmin123',
     p_rol_app_id   => 1, 
-    p_rol_db_nombre => 'ROL_ADMIN_APP_DB' -- El rol de BD sigue siendo el mismo
+    p_rol_db_nombre => 'ROL_ADMIN_APP_DB'
   );
 END;
 /
+
+-- Comprueba que se creó
+SELECT * FROM USUARIO WHERE username = 'APP_ADMIN';
 
 -- Comprueba que se creó
 SELECT * FROM USUARIO WHERE username = 'ADMIN_SISTEMA';
