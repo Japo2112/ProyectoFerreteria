@@ -1,2 +1,1 @@
-# ProyectoFerreteria
-Bases_de_datos
+#Proyecto Bases de datos - Ferreteroa

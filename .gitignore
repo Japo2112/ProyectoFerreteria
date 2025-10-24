@@ -1,0 +1,14 @@
+node_modules/
+target/
+*.class
+*.log
+*.tmp
+.idea/
+.vscode/
+.DS_Store
+__pycache__/
+.env
+*.zip
+*.rar
+*.bak
+
